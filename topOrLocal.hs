@@ -8,4 +8,4 @@ topLevelFunction x =
     woot = 10
 
 topLevelValue :: Integer
-topLevelValue = 6
+topLevelValue = 5
