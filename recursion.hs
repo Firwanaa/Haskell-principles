@@ -16,3 +16,15 @@ factorial n = n * factorial (n-1)
 
 productFact n = product [1..n]
 
+-- using guards 
+isOdd :: Int -> Bool
+isOdd n
+ | n `mod` 2 == 0 = False -- if n is even return false
+ | otherwise = True
+
+-- isOdd2 :: Int -> Bool
+-- isOdd2 n
+--  | n `mod` 2 /= 0 = True -- if n is not even return false
+--  | otherwise = False
+
+isEven n = n `mod` 2 == 0
