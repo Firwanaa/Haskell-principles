@@ -44,3 +44,14 @@ multOfList = foldl (*) 1 [2,3,4,5]
 pow3List = [3^n | n <- [1..10]]
 
 multTable = [[x*y | y <- [1..10]] | x<- [1..10]]
+
+getListItems :: [Int] -> String
+getListItems ([]) = "Your list starts is Empty "
+getListItems (x:[]) = "Your list starts with " ++ show x
+getListItems(x:y:[]) = "Your list contains " ++ show x++ " and " ++ show y
+getListItems(x:xs) = "The 1st itemis "++show x++ " and the rest is "++ show xs
+
+
+getFirstItem :: String -> String
+getFirstItem [] = "Empty String"
+getFirstItem all@(x:xs) ="The first letter in " ++ all ++ " is " ++ [x]
