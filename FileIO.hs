@@ -1,7 +1,9 @@
-module IO where
+-- FileIO.hsLibraries 
+module FileIO where
 
 import Data.List
 import System.IO
+import qualified Distribution.InstalledPackageInfo as FileIO
 
 sayHello = do
         putStrLn "What's your name"
