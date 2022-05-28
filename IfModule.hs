@@ -1,5 +1,5 @@
 -- if.hs
-module If where
+module IfModule where
 import Data.List 
 import System.IO
 
