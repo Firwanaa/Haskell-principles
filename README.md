@@ -1,5 +1,11 @@
-### This Repo contains exercises from the book below:  
-> ### Haskell Programming from the first principles
-> ### By Christopher Allen & Julie Moronuki
+### This Repo contains an exercises from the books below:  
 
-### Haskell probably is the best language to understand Functional Programming principles.
++ #### Haskell Programming from the first principles - Christopher Allen & Julie Moronuki
++ #### Haskell Programming By Prof Graham Hutton
+
+
+
+Fibonacci Sequance in Haskell λ :heart:
+```Haskell
+fib = 1 : 1 :[a+b|(a,b)<- zip fib(tail fib)]
+```
