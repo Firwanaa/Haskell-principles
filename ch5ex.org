@@ -1,34 +1,88 @@
-#+TITLE: Programming in Haskell - Graham Hutton
-#+PROPERTY: header-args :tangle listcomprehentions.hs
+#Title: Programming in Haskell - Graham Hutton
+#+PROPERTY: header-argS :tangle Listcomprehentions.hs
 * TABLE OF CONTENTS :toc:
-- [[#list-comprehensions-ch-5-exercises][List Comprehensions Ch 5 exercises]]
-- [[#imports][Imports]]
-- [[#exercise-1][Exercise 1]]
-- [[#exercise-2][Exercise 2]]
-- [[#exercise-3][Exercise 3]]
+- [[#chapter-5][Chapter 5]]
+  - [[#list-comprehensions-ch-5-exercises][List Comprehensions Ch 5 exercises]]
+  - [[#imports][Imports]]
+  - [[#exercise-1][Exercise 1]]
+  - [[#exercise-2][Exercise 2]]
+  - [[#exercise-3][Exercise 3]]
+  - [[#exercise-4][Exercise 4]]
+  - [[#exercise-5][Exercise 5]]
+  - [[#exercise-6][Exercise 6]]
+  - [[#exercise-7][Exercise 7]]
+  - [[#exercise-8][Exercise 8]]
+- [[#chapter-6][Chapter 6]]
+- [[#chapter-7][Chapter 7]]
+- [[#chapter-8][Chapter 8]]
+- [[#chapter-9][Chapter 9]]
 
-* List Comprehensions Ch 5 exercises
+* Chapter 5
+** List Comprehensions Ch 5 exercises
 Using Doom Emacs Org Mode with Haskell to organize questions and answers
 
-* Imports
+** Imports
 #+begin_src haskell
 module ListComprehensions where
 import Data.List
 import System.IO
 #+end_src
 
-* Exercise 1
+** Exercise 1
 #+begin_src haskell
 sumSqr = sum [x^2 | x <- [1..100]]
 #+end_src
 
-* Exercise 2
+** Exercise 2
 #+begin_src haskell
 grid n m = [(x,y) | x <- [0..m], y <- [0..n]]
 #+end_src
 
 
-* Exercise 3
+** Exercise 3
 #+begin_src haskell
 sqrGrid n = [(x,y) | (x, y) <- grid n n, x /= y]
 #+end_src
+
+
+** Exercise 4
+#+begin_src haskell
+replicate n x = [ x | _ <-[1..n]]
+#+end_src
+
+** Exercise 5
+#+begin_src haskell
+pyths n = [(x,y,z) | x <- [1..n],
+                     y <- [1..n],
+                     z <- [1..n],
+                     x^2 + y^2 == z^2]
+#+end_src
+** Exercise 6
+#+begin_src haskell
+factors n = [x | x <- [1..n-1], n `mod` x == 0]
+perfects n = [x | x <- [1..n], sum (factors x) == x]
+-- another way
+factors' n = [x | x <- [1..n], n `mod` x == 0]
+isPerfect n = sum (init (factors' n)) == n -- init will drop last element
+perfect n = [x | x <- [1..n], isPerfect x]
+#+End_src
+** Exercise 7
+#+begin_src haskell
+com1 = [x | x <- [1,2] ]
+com2 = [y | y <- [3,4] ]
+coms = concat [com1, com2]
+#+End_src
+** Exercise 8
+#+begin_src haskell
+scalarproduct :: [Int] -> [Int] -> Int
+scalarproduct xs ys = sum [xs !! i * ys !! i | i <- [0.. (length xs - 1)]]
+-- another way
+scalarproduct' xs ys = sum [x*y | (x,y) <- zip xs ys]
+#+End_src
+
+* Chapter 6
+* Chapter 7
+* Chapter 8
+* Chapter 9
+
+
