@@ -1,0 +1,34 @@
+#+TITLE: Programming in Haskell - Graham Hutton
+#+PROPERTY: header-args :tangle listcomprehentions.hs
+* TABLE OF CONTENTS :toc:
+- [[#list-comprehensions-ch-5-exercises][List Comprehensions Ch 5 exercises]]
+- [[#imports][Imports]]
+- [[#exercise-1][Exercise 1]]
+- [[#exercise-2][Exercise 2]]
+- [[#exercise-3][Exercise 3]]
+
+* List Comprehensions Ch 5 exercises
+Using Doom Emacs Org Mode with Haskell to organize questions and answers
+
+* Imports
+#+begin_src haskell
+module ListComprehensions where
+import Data.List
+import System.IO
+#+end_src
+
+* Exercise 1
+#+begin_src haskell
+sumSqr = sum [x^2 | x <- [1..100]]
+#+end_src
+
+* Exercise 2
+#+begin_src haskell
+grid n m = [(x,y) | x <- [0..m], y <- [0..n]]
+#+end_src
+
+
+* Exercise 3
+#+begin_src haskell
+
+#+end_src
