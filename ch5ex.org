@@ -30,5 +30,5 @@ grid n m = [(x,y) | x <- [0..m], y <- [0..n]]
 
 * Exercise 3
 #+begin_src haskell
-
+sqrGrid n = [(x,y) | (x, y) <- grid n n, x /= y]
 #+end_src
