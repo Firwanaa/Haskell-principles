@@ -1,4 +1,4 @@
-#Title: Programming in Haskell - Graham Hutton
+#+Title: Programming in Haskell - Graham Hutton
 #+PROPERTY: header-argS :tangle Listcomprehentions.hs
 * TABLE OF CONTENTS :toc:
 - [[#chapter-5][Chapter 5]]
