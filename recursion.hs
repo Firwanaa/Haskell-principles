@@ -28,3 +28,15 @@ isOdd n
 --  | otherwise = False
 
 isEven n = n `mod` 2 == 0
+
+
+drop'  :: Int -> [a] -> [a]
+drop' 0 xs = xs
+drop' _ [] = []
+drop' n (_:xs) = drop' (n-1) xs
+
+-- drop' 3 [1,2,3,4,5]
+-- drop' (3-1) [2,3,4,5]  = drop' 2 [2,3,4,5]
+-- drop' (1) [3,4,5]
+-- drop' (0) [4,5]
+-- [4,5]
