@@ -117,7 +117,7 @@ euclid m n | m == n = m
 and' :: [Bool] -> Bool
 and' [] = True
 and' (x:xs) | x == False = False
-           | otherwise = and xs
+            | otherwise = and xs
 
 concat' :: [[a]] -> [a]
 concat' [] = []
