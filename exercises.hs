@@ -30,3 +30,11 @@ scalarproduct :: [Int] -> [Int] -> Int
 scalarproduct xs ys = sum [xs !! i * ys !! i | i <- [0.. (length xs - 1)]]
 -- another way
 scalarproduct' xs ys = sum [x*y | (x,y) <- zip xs ys]
+
+fac :: Int -> Int
+fac 0 = 1
+fac n | n > 0 = n * fac (n - 1)
+
+sumdown :: Int -> Int
+sumdown 0 = 0
+somedown n | n > 0 = n + somedown (n-1)

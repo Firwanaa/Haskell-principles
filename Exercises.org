@@ -1,5 +1,5 @@
 #+Title: Programming in Haskell - Graham Hutton
-#+PROPERTY: header-argS :tangle Listcomprehentions.hs
+#+PROPERTY: header-argS :tangle Exercises.hs
 Using Doom Emacs Org Mode with Haskell to organize questions and answers
 * TABLE OF CONTENTS :toc:
 - [[#chapter-5][Chapter 5]]
@@ -16,6 +16,11 @@ Using Doom Emacs Org Mode with Haskell to organize questions and answers
 - [[#chapter-6][Chapter 6]]
   - [[#recursive-functions---ch6-exercises][Recursive Functions - Ch6 Exercises]]
   - [[#exercise-1-1][Exercise 1]]
+  - [[#exercise-3-1][Exercise 3]]
+  - [[#exercise-4-1][Exercise 4]]
+  - [[#exercise-6-1][Exercise 6]]
+  - [[#exercise-7-1][Exercise 7]]
+  - [[#exercise-8-1][Exercise 8]]
 - [[#chapter-7][Chapter 7]]
 - [[#chapter-8][Chapter 8]]
 - [[#chapter-9][Chapter 9]]
@@ -25,7 +30,7 @@ Using Doom Emacs Org Mode with Haskell to organize questions and answers
 
 ** Imports
 #+begin_src haskell
-module ListComprehensions where
+module Exercises where
 import Data.List
 import System.IO
 #+end_src
@@ -87,7 +92,71 @@ scalarproduct' xs ys = sum [x*y | (x,y) <- zip xs ys]
 
 ** Exercise 1
 #+begin_src haskell
+fac :: Int -> Int
+fac 0 = 1
+fac n | n > 0 = n * fac (n - 1)
 #+End_src
+
+** Exercise 3
+#+begin_src haskell
+-- (^) :: Int -> Int -> Int
+-- m ^ 0 = 1
+-- m ^ n = m * (m ^ (n-1))
+#+End_src
+
+** Exercise 4
+#+begin_src haskell
+euclid :: Int -> Int -> Int
+euclid m n | m == n = m
+           | m < n = euclid m (n - m)
+           | m > n = euclid (m - n) n
+#+End_src
+
+** Exercise 6
+#+begin_src haskell
+and' :: [Bool] -> Bool
+and' [] = True
+and' (x:xs) | x == False = False
+           | otherwise = and xs
+
+concat' :: [[a]] -> [a]
+concat' [] = []
+concat' (x:xs) = x ++ (concat' xs)
+
+replicate' :: Int -> a -> [a]
+replicate' 0 x = []
+replicate' n x = x:replicate' (n-1) x
+
+(!!@) :: [a] -> Int -> a
+(!!@) (x:xs) 0 = x
+(!!@) (x:xs) n = (!!@) xs (n-1)
+
+elem' :: Eq a => a -> [a] -> Bool
+elem' x [] = False
+elem' e (x:xs) | x == e = True
+               | otherwise = elem' e xs
+#+End_src
+
+** Exercise 7
+#+begin_src haskell
+merge' :: Ord a => [a] -> [a] -> [a]
+merge' [] [] = []
+merge' [] xs = xs
+merge' ys [] = ys
+merge' (x:xs) (y:ys) | x <= y = x:merge' xs (y:ys)
+                     | otherwise = y: merge' ys (x:xs)
+#+End_src
+
+** Exercise 8
+#+begin_src haskell
+halve :: [a] -> ([a], [a])
+halve xs = (take n xs, drop n xs)
+           where n = length `div` 2
+
+msort' :: Ord a => [a] -> [a]
+
+#+End_src
+
 
 
 * Chapter 7
