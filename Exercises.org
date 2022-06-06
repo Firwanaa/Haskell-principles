@@ -1,8 +1,9 @@
 #+Title: Programming in Haskell - Graham Hutton
 #+PROPERTY: header-argS :tangle Listcomprehentions.hs
+Using Doom Emacs Org Mode with Haskell to organize questions and answers
 * TABLE OF CONTENTS :toc:
 - [[#chapter-5][Chapter 5]]
-  - [[#list-comprehensions-ch-5-exercises][List Comprehensions Ch 5 exercises]]
+  - [[#list-comprehensions-ch-5-exercises][List Comprehensions Ch 5 Exercises]]
   - [[#imports][Imports]]
   - [[#exercise-1][Exercise 1]]
   - [[#exercise-2][Exercise 2]]
@@ -13,13 +14,14 @@
   - [[#exercise-7][Exercise 7]]
   - [[#exercise-8][Exercise 8]]
 - [[#chapter-6][Chapter 6]]
+  - [[#recursive-functions---ch6-exercises][Recursive Functions - Ch6 Exercises]]
+  - [[#exercise-1-1][Exercise 1]]
 - [[#chapter-7][Chapter 7]]
 - [[#chapter-8][Chapter 8]]
 - [[#chapter-9][Chapter 9]]
 
 * Chapter 5
-** List Comprehensions Ch 5 exercises
-Using Doom Emacs Org Mode with Haskell to organize questions and answers
+** List Comprehensions Ch 5 Exercises
 
 ** Imports
 #+begin_src haskell
@@ -81,6 +83,13 @@ scalarproduct' xs ys = sum [x*y | (x,y) <- zip xs ys]
 #+End_src
 
 * Chapter 6
+** Recursive Functions - Ch6 Exercises
+
+** Exercise 1
+#+begin_src haskell
+#+End_src
+
+
 * Chapter 7
 * Chapter 8
 * Chapter 9
