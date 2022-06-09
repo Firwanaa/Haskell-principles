@@ -36,6 +36,9 @@ mult (Succ n) m = add (mult n m) m
 
 -- 2 - Define a suitable function folde for expressions and give 
 --     a few examples of its use.
+data Expr' = Val' Int | Add' Expr' Expr'
+folde :: (Int -> a) -> (a -> a -> a) -> Expr' a
+
 
 -- 3 - Define typ "Tree a" of binary trees built from "Leaf"
 --     values of type a using a Node constructor that takes two binary trees
