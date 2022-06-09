@@ -28,16 +28,16 @@ addparity xs | odd (sum xs) = xs ++ [1]
 biencode :: String -> [Bit]
 biencode = concat . map (addparity . make8 . int2bin . ord)
 
-paritychecker :: [Bit] -> Bool
-paritychecker xs | length xs == 9 && ((sum (init xs)) `mod` 2) == (lst xs) = True
-                 | otherwise = error "Transmission error!"
+-- paritychecker :: [Bit] -> Bool
+-- paritychecker xs | length xs == 9 && ((sum (init xs)) `mod` 2) == (fst xs) = True
+--                  | otherwise = error "Transmission error!"
 
 discardparitybit :: [[Bit]] -> [[Bit]]
 discardparitybit xs = map (take 8) xs
 
 
-bidecode :: [Bit] -> String
-bidecode xs = map (chr . bin2int) .discardparitybit $ filter paritychecker (chop9 xs)
+-- bidecode :: [Bit] -> String
+-- bidecode xs = map (chr . bin2int) .discardparitybit $ filter paritychecker (chop9 xs)
 
 -- Transmission
 encode :: String -> [Bit]
