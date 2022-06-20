@@ -39,6 +39,6 @@ inc1 = fmap (+1)
         Eg.
         > fmap (not . even) [1,2]
         > [True, False]
-        > fmap (not . not . even) [1,2] -- 😁
+        > fmap (not . not . even) [1,2] -- 😬
         > [False, True]
 --}
