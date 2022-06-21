@@ -32,6 +32,6 @@ savediv n m = Just (n `div` m)
 
 eval :: Expr -> Maybe Int
 eval (Val n) = Just n
-eval (Div x y) = eval x >>= \n ->
-                 eval y >>= \m ->
+eval (Div x y) = eval x >>= \n -> -- if x evaluation is successful then
+                 eval y >>= \m -> -- if y evaluation is successful then
                  safediv n m
