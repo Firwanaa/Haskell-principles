@@ -25,6 +25,13 @@ savediv n m = Just (n `div` m)
 -- 			Just m -> safediv n m
 
 -- now lets try applicative style 
+-- eval :: Expr -> Maybe Int
+-- eval (Val n) = pure n
+-- eval (Div x y) = pure safedive <*> eval x <*> eval y -- which is not correct because safediv returns Maybe type
+-- because applicative style restricts us to applying functions to effectful argument
+
 eval :: Expr -> Maybe Int
-eval (Val n) = pure n
-eval (Div x y) = pure safedive <*> eval x <*> eval y -- which is not correct because safediv returns Maybe type
+eval (Val n) = Just n
+eval (Div x y) = eval x >>= \n ->
+                 eval y >>= \m ->
+                 safediv n m
