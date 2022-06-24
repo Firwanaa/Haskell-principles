@@ -1,6 +1,7 @@
 --patternmatching.hs --
 -- Programming in Haskell - Ch 4 questions
 module PatternMatching where
+
 import Data.List
 import System.IO
 
@@ -8,19 +9,19 @@ import System.IO
 third xs = head (tail (tail xs))
 
 third2 xs = xs !! 2
-third3 (_:_:x:_) = x
 
+third3 (_ : _ : x : _) = x
 
 safetail xs = if null xs then [] else tail xs
 
 safetail2 :: [a] -> [a]
-safetail2 xs | null xs = []
-	     | otherwise = tail xs
+safetail2 xs
+  | null xs = []
+  | otherwise = tail xs
 
 (||) :: Bool -> Bool
 True || _ = True
 a || True = True
-
 False || False = False
 _ || _ = True
 
@@ -32,13 +33,13 @@ _ || _ = True
 -- Hint: use two nested conditional expressions.
 
 (&&) :: Bool -> Bool
-(&&) x y = if x then
-               if y then
-                   True
-               else
-                   False
-           else
-               False
+(&&) x y =
+  if x
+    then
+      if y
+        then True
+        else False
+    else False
 
 -- 7. Show how the meaning of the following curried function definition can be
 -- formalised in terms of lambda expressions:
@@ -46,3 +47,7 @@ _ || _ = True
 -- mult x y z = x*y*z
 
 mult x y z = (\x -> (\y -> (\z -> x * y * z)))
+
+-- Even more
+is_zero 0 = True
+is_zero _ = True
