@@ -23,12 +23,14 @@ import System.Posix (BaudRate (B200))
 -- left        right
 -- f 10 30 = (\10 30 -> (10+30)/2) = 20
 -- so will end up with this
--- (f 12 (f 4 (20 (30)))
+-- (f 12 (f 4 (20)))
 
 -- (Third step)
 -- (f 12 (f 4 (20))
 -- left   right
 -- f 4 20 = (\4 20 -> (4+20)/2) = 12
+-- so will end up with this
+-- (f 12 (12))
 
 -- (Last step)
 -- (f 12 (12))
