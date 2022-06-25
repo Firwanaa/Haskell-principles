@@ -5,7 +5,7 @@ import Distribution.Simple.Program.HcPkg (list)
 import System.Posix (BaudRate (B200))
 
 -- Sample  foldr (\x y -> (x+y)/2) 54 [12,4,10,16]
--- let's save our function for simplicity  (f = (\x y -> (x+y)/2)
+-- let's name our function  (f = (\x y -> (x+y)/2))
 -- so our sample question will be foldr f 54 [12,4,10,6]
 -- (f 12 (f 4 (f 10 (f 6 54)))
 -- left              right
