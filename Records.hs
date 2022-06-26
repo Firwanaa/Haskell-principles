@@ -2,6 +2,8 @@
 
 module Records where
 
+import Data.Maybe
+
 data Person = Person {name :: String, age :: Int}
 
 greet :: Person -> [Char]
@@ -38,3 +40,14 @@ instance Eq Temprature where
 
 -- Maybe
 -- data Maybe a = Nothing | Just a
+
+safediv :: Integral a => a -> a -> Maybe a
+safediv a b = if b == 0 then Nothing else Just $ div a b
+
+-- safediv _ 0 = Nothing
+-- savedive a b = Just (div a b)
+
+-- import Data.Maybe
+-- isJust :: Maybe a -> Bool
+-- isNothing :: Maybe a -> Bool
+-- fromJust :: Maybe a -> a -- Rust says "Hi!" BTW.
