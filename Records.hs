@@ -26,10 +26,15 @@ d3 = D3 1 2 4
 -- > z d2 => *** Exception: No match in record selector z
 
 -- Typeclasses
-data Temprature = C Float | F Float
+data Temprature = C Float | F Float deriving (Show) -- here deriving Eq will be incorrect
 
 instance Eq Temprature where
   (==) (C n) (C m) = n == m
   (==) (F n) (F m) = n == m
   (==) (C c) (F f) = (1.8 * c + 32) == f
   (==) (F f) (C c) = (1.8 * c + 32) == f
+
+-- not equal will be implicitly defined
+
+-- Maybe
+-- data Maybe a = Nothing | Just a
