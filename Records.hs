@@ -51,3 +51,10 @@ safediv a b = if b == 0 then Nothing else Just $ div a b
 -- isJust :: Maybe a -> Bool
 -- isNothing :: Maybe a -> Bool
 -- fromJust :: Maybe a -> a -- Rust says "Hi!" BTW.
+-- fromMaybe :: a -> Maybe a -> a
+
+-- fromMaybe 3.1415   (Nothing) => 3.1415 -- Alright alright
+--           default  Maybe
+-- fromMaybe 3.1415 (Just 2.7183) => 2.7183
+--           default  Maybe
+--If the "Maybe" is "Nothing", "fromMaybe" function will return default, else it will return Maybe
