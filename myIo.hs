@@ -18,6 +18,7 @@ main = do
   i <- getLine
   if i /= "quit"
     then do
+      -- do must be used again
       putStrLn ("Input: " ++ i)
       main
-    else pure ()
+    else return ()
