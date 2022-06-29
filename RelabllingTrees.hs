@@ -51,6 +51,7 @@ rlable (Node l r) n = (Node l' r', n'')
 fresh :: ST Int
 fresh = S (\n -> (n, n + 1))
 
+-- mlabel
 mlabel :: Tree a -> ST (Tree Int)
 mlabel (Leaf _) = do
   n <- fresh
