@@ -1,3 +1,6 @@
+import Data.Char
+import GHC (Convertable (convert))
+
 -- Monads.hs
 -- Programming in Haskell - Ch 12 - Monads
 -- Monad I
@@ -14,6 +17,7 @@ data Expr = Val Int | Div Expr Expr
 
 safediv :: Int -> Int -> Maybe Int
 safediv _ 0 = Nothing
+
 savediv n m = Just (n `div` m)
 
 -- eval :: Expr -> Maybe Int
@@ -24,7 +28,7 @@ savediv n m = Just (n `div` m)
 -- 			Nothing -> Nothing
 -- 			Just m -> safediv n m
 
--- now lets try applicative style 
+-- now lets try applicative style
 -- eval :: Expr -> Maybe Int
 -- eval (Val n) = pure n
 -- eval (Div x y) = pure safedive <*> eval x <*> eval y -- which is not correct because safediv returns Maybe type
@@ -37,13 +41,13 @@ savediv n m = Just (n `div` m)
 --                  safediv n m
 
 -- General Pattern
--- m1 >>= \x1 -> 
--- m2 >>= \x2 -> 
+-- m1 >>= \x1 ->
+-- m2 >>= \x2 ->
 -- .
 -- .
 -- .
 -- .
--- mn >>= \xn -> 
+-- mn >>= \xn ->
 -- f x1 x2 ... xn
 
 -- Haskell provides special notation for expressions of the above form
@@ -59,22 +63,24 @@ savediv n m = Just (n `div` m)
 -- eval can now be redefined simply as:
 eval :: Expr -> Maybe Int
 eval (Val n) = Just n
-eval (Div x y) = do n <- eval x
-                    m <- eval y
-                    safediv n m
-
+eval (Div x y) = do
+  n <- eval x
+  m <- eval y
+  safediv n m
 
 -- Monad II
--- Examples 
+-- Examples
 -- Lists
 -- instance Monad [] where
 --         -- (>>=) :: [a] -> (a -> [b]) -> [b]
 --         xs >>= f = concat (map f xs) -- [y | x <- xs, y <- f x]
 
-pairs' :: [a] -> [b] -> [(a,b)]
-pairs' xs ys = do x <- xs 
-                  y <- ys 
-                  return (x, y)
+pairs' :: [a] -> [b] -> [(a, b)]
+pairs' xs ys = do
+  x <- xs
+  y <- ys
+  return (x, y)
+
 -- using list comprehension
 -- pairs :: [a] -> [b] -> [(a,b)]
 -- pairs xs ys = [(x,y) | x <- xs, y <- ys]
@@ -94,9 +100,8 @@ type State = Int
 newtype ST a = S (State -> (a -> State))
 
 -- to get rid of  dummy constructor
-app :: ST a -> State -> (a, State)
-app (S st) x = st x
-
+-- app :: ST a -> State -> (a, State)
+-- app (S st) x = st x
 
 -- instance Functor ST where
 --          -- fmap :: (a -> b) -> ST a -> ST b
@@ -106,8 +111,23 @@ app (S st) x = st x
 --           -- pure :: a -> ST a
 --           pure x = S (\s -> (x,s))
 
-instance Monad ST where
-        -- return :: a  -> ST a
-        return x = S(\s -> (x, s))
-        -- (>>=) :: ST a -> (a -> ST b) -> ST b
-        st >>= f = S(\s -> let (x,s') = app st s in app (f x) x')
+-- instance Monad ST where
+--         -- return :: a  -> ST a
+--         return x = S(\s -> (x, s))
+--         -- (>>=) :: ST a -> (a -> ST b) -> ST b
+--         st >>= f = S(\s -> let (x,s') = app st s in app (f x) x')
+
+-- Generic functions
+
+mapM' :: Monad m => (a -> m b) -> [a] -> m [b]
+mapM' f [] = return []
+mapM' f (x : xs) = do
+  y <- f x
+  ys <- mapM' f xs
+  return (y : ys)
+
+-- convert digit charater to its numeric value
+conv :: Char -> Maybe Int
+conv c
+  | isDigit c = Just (digitToInt c)
+  | otherwise = Nothing
