@@ -60,3 +60,6 @@ mlabel (Node l r) = do
   l' <- mlabel l
   r' <- mlabel r
   return (Node l' r')
+
+label :: Tree a -> Tree Int
+label t = fst (app (mlabel t) 0)
