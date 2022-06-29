@@ -126,8 +126,22 @@ mapM' f (x : xs) = do
   ys <- mapM' f xs
   return (y : ys)
 
--- convert digit charater to its numeric value
+-- convert digit charater to its numeric value ("12" -> [1,2])
 conv :: Char -> Maybe Int
 conv c
   | isDigit c = Just (digitToInt c)
   | otherwise = Nothing
+
+concat :: [[a]] -> [a]
+concat xss = [x | xs <- xss, x <- xs]
+
+join :: Monad m => m (m a) -> m a
+join mmx = do
+  mx <- mmx
+  x <- mx
+  return x
+
+-- Monad Laws
+-- return  x >>= f = f x
+-- mx >>= return = mx
+-- (mx >>= f) >>= g = mx >= (\x -> (f x >>= g))
