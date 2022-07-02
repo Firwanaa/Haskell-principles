@@ -59,5 +59,18 @@ fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 -- zipWith (+) (3:...) (5:..) = 3+5 : ...
 -- now ower fibs list is 0 : 1 : 1 : 2 : 5 : 8
 
--- The question is "Does the Fibonacci series start with 0 or with 1?" .. 🤔🤔🤔
+-- The question is "Does the Fibonacci series start with 0 or with 1?" .. 🤔🤔🤔🤔🤔
 fib = 1 : 1 : [a + b | (a, b) <- zip fib (tail fib)]
+
+-- Exercises
+
+-- Exercise #1
+data Tree a = Leaf | Node (Tree a) a (Tree a) deriving (Show)
+
+-- infint tree
+inv_tup_tree = aux (0, 0) where aux (l, r) = Node (aux $ (l + 1, r)) (l, r) (aux $ (l, r + 1))
+
+cut :: Integer -> Tree a -> Tree a
+cut 0 _ = Leaf
+cut n Leaf = Leaf
+cut n (Node l v r) = Node (cut (n -1) l) v (cut (n -1) r)
