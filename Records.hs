@@ -4,15 +4,15 @@ module Records where
 
 import Data.Maybe
 
-data Person = Person {name :: String, age :: Int}
+-- data Person = Person {name :: String, age :: Int}
 
-greet :: Person -> [Char]
-greet person = "Hi " ++ name person ++ " your age is: " ++ show (age person)
+-- greet :: Person -> [Char]
+-- greet person = "Hi " ++ name person ++ " your age is: " ++ show (age person)
 
--- greet (Person name _) = "Hi " ++ name
--- greet (Person n _) = "Hi " ++ n
+-- -- greet (Person name _) = "Hi " ++ name
+-- -- greet (Person n _) = "Hi " ++ n
 
-tom = Person "Tom" 44
+-- tom = Person "Tom" 44
 
 -- greet tom => "Hi Tom your age is: 44"
 
@@ -58,3 +58,63 @@ safediv a b = if b == 0 then Nothing else Just $ div a b
 -- fromMaybe 3.1415 (Just 2.7183) => 2.7183
 --           default  Maybe
 --If the "Maybe" is "Nothing", "fromMaybe" function will return default, else it will return Maybe
+
+-- Book Store
+
+type FirstName = String
+
+type LastName = String
+
+type MiddleName = String
+
+-- data Name = Name FirstName LastName | NameWithMiddleName FirstName MiddleName LastName
+
+data Name
+  = Name FirstName LastName
+  | NameWithMiddle FirstName MiddleName LastName
+  | TwoInitialsWithLast Char Char LastName
+  | FirstNameWithTwoInits FirstName Char Char
+
+data Artist = Person Name | Band String
+
+-- data AuthorName = AuthorName {
+--   firstName::String,
+--   lastName::String
+-- }
+-- data AuthorName = AuthorName String String
+data Author = Author Name
+
+data Creator = AuthorCreator Author | ArtistCreator Artist deriving (Show)
+
+data Book = Book
+  { author :: Creator,
+    isbn :: String,
+    bookTitle :: String,
+    bookYear :: Int,
+    bookPrice :: Double
+  }
+
+data VinylRecord = VinylRecord
+  { artist :: Creator,
+    recordTile :: String,
+    recordYear :: Int,
+    recordPrice :: Double
+  }
+
+data CollectibleToy = CollectibleToy
+  { name :: String,
+    description :: String,
+    toyPrice :: Double
+  }
+
+data StoreItem = BookItem Book | RecordItem VinylRecord | ToyItem CollectibleToy
+
+price :: StoreItem -> Double
+price (BookItem book) = bookPrice book
+price (RecordItem record) = recordPrice record
+price (ToyItem toy) = toyPrice toy
+
+madeBy :: StoreItem -> String
+madeBy (BookItem book) = show (author book)
+madeBy (RecordItem record) = show (artist record)
+madeBy _ = "unknown"
